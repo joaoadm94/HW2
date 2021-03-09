@@ -1,13 +1,8 @@
 # This file is app/controllers/movies_controller.rb
 class MoviesController < ApplicationController
   def index
-    @movies = Movie.all
-    
-    sort = params[:sort_by]
-    case sort 
-    when "title"
-      @movies = Movie.order(title: :asc).all
-    end
+    @movies = Movie.order(params[:sort_by]).all
+    @all_ratings = Movie.all_ratings
   end
 
   def show
